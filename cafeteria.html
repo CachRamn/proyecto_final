@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio | Página y Cáfe</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles/cafeteria.css">
+</head>
+<body>
+    <header class="header">
+        <a href="index.html" class="logo">
+            <span class="logo-icono">☕</span>
+            <span class="logo-texto">Página <span>&</span> Taza</span>
+        </a>
+        <nav class="navbar">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="cafeteria.html" class="active">Cafetería</a></li>
+                <li><a href="#">Librería</a></li>
+                <li><a href="#">Catalogo</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </nav>
+        <div class="search-container">
+            <input type="search" placeholder="Buscar libros o bebidas..." class="search-bar">
+            <button class="search-btn">🔍</button>
+        </div>
+    </header>
+    <main>
+        <!-- PAGE HERO -->
+        <section class="page-hero" style="background:linear-gradient(135deg,#2C1A0E,#5C3D2E)">
+            <div class="page-hero-content">
+                <p class="hero-etiqueta">☕ Nuestra Cafetería</p>
+                <h1>Cada taza, <em>una historia</em></h1>
+                <p>Café de especialidad con granos 100% mexicanos de Veracruz, Chiapas y Oaxaca. Tostados semanalmente para garantizar la máxima frescura.</p>
+            </div>
+        </section>
+
+        <!-- FILOSOFÍA DEL CAFÉ -->
+        <section class="seccion-bloque">
+            <div class="page-container bloque-grid">
+                <div class="bloque-texto">
+                    <p class="intro-tag">— Nuestra filosofía</p>
+                    <h2>Del origen a tu taza</h2>
+                    <p>En Página & Taza trabajamos directamente con productores de café en Veracruz y Chiapas. Cada lote es trazable, sustentable y de comercio justo. Nuestro maestro tostador, con 15 años de experiencia, selecciona personalmente los granos que llegan a tu taza.</p>
+                    <p>Creemos que el café es una conversación entre el productor, el barista y quien lo disfruta. Por eso entrenamos a nuestro equipo en el arte del espresso, el pour-over y la preparación en frío.</p>
+                </div>
+                <div class="bloque-imagen">
+                    <div class="imagen-placeholder" style="background:linear-gradient(135deg,#5C3D2E,#C4622D); aspect-ratio:1/1; border-radius:50%; max-width:340px; margin:0 auto;">
+                        <span style="font-size:6rem">☕</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CARTA DE BEBIDAS -->
+        <section class="menu-section">
+            <div class="page-container">
+                <div class="section-title">
+                    <h2>Nuestra Carta de Bebidas</h2>
+                    <p>Preparaciones para todos los gustos y momentos del día</p>
+                    <div class="linea-deco"></div>
+                </div>
+                <div class="menu-categorias">
+                    <div class="menu-cat">
+                        <h3 class="menu-cat-titulo">☕ Bebidas Calientes</h3>
+                        <div class="menu-items">
+                            <div class="menu-item"><span class="menu-nombre">Espresso</span><span class="menu-precio">$45</span></div>
+                            <div class="menu-item"><span class="menu-nombre">Americano</span><span class="menu-precio">$55</span></div>
+                            <div class="menu-item"><span class="menu-nombre">Capuchino</span><span class="menu-precio">$70</span></div>
+                            <div class="menu-item"><span class="menu-nombre">Latte</span><span class="menu-precio">$75</span></div>
+                            <div class="menu-item"><span class="menu-nombre">Flat White</span><span class="menu-precio">$75</span></div>
+                            <div class="menu-item"><span class="menu-nombre">Cortado</span><span class="menu-precio">$65</span></div>
+                            <div class="menu-item"><span class="menu-nombre">Matcha Latte</span><span class="menu-precio">$80</span></div>
+                            <div class="menu-item"><span class="menu-nombre">Chai Latte</span><span class="menu-precio">$78</span></div>
+                        </div>
+                    </div>
+                    <div class="menu-cat">
+                        <h3 class="menu-cat-titulo">🧊 Bebidas Frías</h3>
+                        <div class="menu-items">
+                            <div class="menu-item"><span class="menu-nombre">Cold Brew</span><span class="menu-precio">$80</span></div>
+                            <div class="menu-item"><span class="menu-nombre">Iced Latte</span><span class="menu-precio">$82</span></div>
+                            <div class="menu-item"><span class="menu-nombre">Frappé de Café</span><span class="menu-precio">$90</span></div>
+                            <div class="menu-item"><span class="menu-nombre">Limonada de Frutos Rojos</span><span class="menu-precio">$72</span></div>
+                            <div class="menu-item"><span class="menu-nombre">Agua de Tamarindo</span><span class="menu-precio">$50</span></div>
+                            <div class="menu-item"><span class="menu-nombre">Smoothie Verde</span><span class="menu-precio">$85</span></div>
+                        </div>
+                    </div>
+                    <div class="menu-cat">
+                        <h3 class="menu-cat-titulo">🥐 Comida & Repostería</h3>
+                        <div class="menu-items">
+                            <div class="menu-item"><span class="menu-nombre">Croissant de Mantequilla</span><span class="menu-precio">$55</span></div>
+                            <div class="menu-item"><span class="menu-nombre">Muffin de Arándano</span><span class="menu-precio">$48</span></div>
+                            <div class="menu-item"><span class="menu-nombre">Pastel de Zanahoria</span><span class="menu-precio">$65</span></div>
+                            <div class="menu-item"><span class="menu-nombre">Cheesecake de Guayaba</span><span class="menu-precio">$75</span></div>
+                            <div class="menu-item"><span class="menu-nombre">Tostada Francesa</span><span class="menu-precio">$85</span></div>
+                            <div class="menu-item"><span class="menu-nombre">Granola con Yogurt</span><span class="menu-precio">$70</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROCESO -->
+        <section class="proceso-section">
+            <div class="page-container">
+                <div class="section-title">
+                    <h2>Nuestro Proceso</h2>
+                    <p>Del grano a la taza en 4 pasos</p>
+                    <div class="linea-deco"></div>
+                </div>
+                <div class="proceso-steps">
+                    <div class="step">
+                        <div class="step-num">01</div>
+                        <h3>Selección</h3>
+                        <p>Elegimos granos de altura de pequeños productores certificados de Veracruz y Chiapas.</p>
+                    </div>
+                    <div class="step-flecha">→</div>
+                    <div class="step">
+                        <div class="step-num">02</div>
+                        <h3>Tostado</h3>
+                        <p>Tostamos en lotes pequeños cada semana para asegurar la frescura máxima del café.</p>
+                    </div>
+                    <div class="step-flecha">→</div>
+                    <div class="step">
+                        <div class="step-num">03</div>
+                        <h3>Preparación</h3>
+                        <p>Nuestros baristas certificados preparan cada bebida con técnica y pasión por el oficio.</p>
+                    </div>
+                    <div class="step-flecha">→</div>
+                    <div class="step">
+                        <div class="step-num">04</div>
+                        <h3>Tu Taza</h3>
+                        <p>Una experiencia sensorial completa para disfrutar mientras exploras un buen libro.</p>
+                    </div>
+                </div>
+            </div>
+        </section> 
+    </main>
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-col logo-col">
+                <div class="logo-texto-footer">Página <span>&</span> Taza</div>
+                    <p>Tu rincón favorito para leer, disfrutar un buen café y descubrir nuevas historias en Querétaro.</p>
+                <div class="social-links">
+                    <a href="#" class="social-icon" title="Facebook">f</a>
+                    <a href="#" class="social-icon" title="Instagram">ig</a>
+                    <a href="#" class="social-icon" title="WhatsApp">wa</a>
+                    <a href="#" class="social-icon" title="TikTok">tk</a>
+                </div>
+            </div>
+            <div class="footer-col links-col">
+                <h3>Navegación</h3>
+                    <ul>
+                        <li><a href="#.html">Inicio</a></li>
+                        <li><a href="#.html">Cafetería</a></li>
+                        <li><a href="#.html">Librería</a></li>
+                        <li><a href="#.html">Catálogo</a></li>
+                        <li><a href="#.html">Contacto</a></li>
+                    </ul>
+            </div>
+            <div class="footer-col contact-col">
+                <h3>Contacto</h3>
+                <table class="contact-table">
+                    <tr>
+                        <td class="icon-cell">📍</td>
+                        <td>Andador 5 de Mayo #12<br><small>Centro Histórico, Querétaro, Qro.</small></td>
+                    </tr>
+                    <tr>
+                        <td class="icon-cell">📞</td>
+                        <td>Teléfono<br><small>+52 442 123 4567</small></td>
+                    </tr>
+                    <tr>
+                        <td class="icon-cell">✉️</td>
+                        <td>Correo<br><small>hola@paginaytaza.mx</small></td>
+                    </tr>
+                    <tr>
+                        <td class="icon-cell">💬</td>
+                        <td>WhatsApp<br><small>+52 442 987 6543</small></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Página & Taza. Todos los derechos reservados. |
+                <a href="#.html">Aviso de Privacidad</a> |
+                <a href="#.html">Términos y Condiciones</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
