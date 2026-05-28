@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio | Página y Cáfe</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles/index.css">
 </head>
 <body>
     <header class="header">
@@ -27,7 +28,153 @@
         </div>
     </header>
     <main>
+        <!--  SECCIÓN HERO  -->
+        <section class="hero-full">
+            <div class="hero-overlay"></div>
+                <div class="hero-content">
+                    <p class="hero-etiqueta">☕ Café · Libros · Comunidad</p>
+                    <h1>Un rincón donde cada<br><em>página sabe mejor</em></h1>
+                    <p class="hero-desc">Descubre nuestra selección de libros mientras disfrutas el mejor café de especialidad en Querétaro. Un espacio para leer, soñar y conectar.</p>
+                    <div class="hero-btns">
+                        <a href="catalogo.html" class="cta-button">Ver Catálogo</a>
+                        <a href="cafeteria.html" class="cta-button-outline">Nuestra Carta</a>
+                    </div>
+                </div>
+            <div class="hero-deco">
+                <div class="hero-deco-libro">📚</div>
+            </div>
+        </section>
 
+        <!--  INTRODUCCIÓN  -->
+        <section class="intro-section">
+            <div class="page-container intro-grid">
+                <div class="intro-texto">
+                    <p class="intro-tag">— Nuestra historia</p>
+                    <h2 class="intro-titulo">Más que una cafetería,<br>un universo de palabras</h2>
+                    <p>En <strong>Página & Taza</strong> creemos que el café y los libros comparten el mismo poder: transportarte a otro mundo. Desde 2017 somos el punto de encuentro de lectores, estudiantes y soñadores en el corazón de Querétaro.</p>
+                    <p>Trabajamos con café de origen mexicano, repostería artesanal y una curaduría de libros que va desde clásicos universales hasta autores contemporáneos latinoamericanos.</p>
+                    <a href="cafeteria.html" class="cta-button-outline" style="margin-top:1.5rem; display:inline-block;">Conoce más →</a>
+                </div>
+                <div class="intro-imagen">
+                    <div class="imagen-marco">
+                        <div class="imagen-placeholder intro-img-bg">
+                            <span>☕📖</span> <p>Cafetería &amp; Librería</p>
+                        </div>
+                    </div>
+                    <div class="intro-badge">
+                        <span class="badge-icono">🏆</span>
+                        <div>
+                            <strong>Mejor Café</strong>
+                            <small>Querétaro 2024</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--  CARRUSELES  -->
+        <section class="carousels-section">
+            <div class="page-container">
+                <div class="section-title">
+                    <h2>Lo que encontrarás aquí</h2>
+                    <p>Una experiencia que combina el aroma del café con el mundo de los libros</p>
+                    <div class="linea-deco"></div>
+                </div>
+                <div class="carousel-wrapper">
+
+                    <!-- Carrusel 1: Cafetería -->
+                    <div class="carousel-group">
+                        <h3 class="carousel-label">☕ Nuestro Café</h3>
+                        <div class="carousel-container">
+                            <div class="carousel-track" id="track1">
+                                <div class="carousel-slide active carousel-placeholder" style="background:linear-gradient(135deg,#5C3D2E,#2C1A0E)">
+                                    <span>Espresso de Especialidad</span>
+                                </div>
+                                <div class="carousel-slide carousel-placeholder" style="background:linear-gradient(135deg,#C4622D,#5C3D2E)">
+                                    <span>Latte con Arte</span>
+                                </div>
+                                <div class="carousel-slide carousel-placeholder" style="background:linear-gradient(135deg,#7A5C44,#2C1A0E)">
+                                    <span>Cold Brew de Origen</span>
+                                </div>
+                                <div class="carousel-slide carousel-placeholder" style="background:linear-gradient(135deg,#2C1A0E,#C4622D)">
+                                    <span>Matcha Ceremonial</span>
+                                </div>
+                            </div>
+                            <button class="carousel-btn prev" onclick="moveSlide('track1','dots1',-1)">&#10094;</button>
+                            <button class="carousel-btn next" onclick="moveSlide('track1','dots1',1)">&#10095;</button>
+                            <div class="carousel-indicators" id="dots1">
+                                <span class="dot active" onclick="jumpToSlide('track1','dots1',0)"></span>
+                                <span class="dot" onclick="jumpToSlide('track1','dots1',1)"></span>
+                                <span class="dot" onclick="jumpToSlide('track1','dots1',2)"></span>
+                                <span class="dot" onclick="jumpToSlide('track1','dots1',3)"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Carrusel 2: Librería -->
+                    <div class="carousel-group">
+                        <h3 class="carousel-label">📚 Nuestros Libros</h3>
+                        <div class="carousel-container">
+                            <div class="carousel-track" id="track2">
+                                <div class="carousel-slide active carousel-placeholder" style="background:linear-gradient(135deg,#1a3a2a,#0d2018)">
+                                    <span>Literatura Latinoamericana</span>
+                                </div>
+                                <div class="carousel-slide carousel-placeholder" style="background:linear-gradient(135deg,#2a1a3a,#180d20)">
+                                    <span>Clásicos Universales</span>
+                                </div>
+                                <div class="carousel-slide carousel-placeholder" style="background:linear-gradient(135deg,#3a2a1a,#20180d)">
+                                    <span>Ensayo y No Ficción</span>
+                                </div>
+                                <div class="carousel-slide carousel-placeholder" style="background:linear-gradient(135deg,#1a2a3a,#0d1820)">
+                                    <span>Libros de Arte</span>
+                                </div>
+                            </div>
+                            <button class="carousel-btn prev" onclick="moveSlide('track2','dots2',-1)">&#10094;</button>
+                            <button class="carousel-btn next" onclick="moveSlide('track2','dots2',1)">&#10095;</button>
+                            <div class="carousel-indicators" id="dots2">
+                                <span class="dot active" onclick="jumpToSlide('track2','dots2',0)"></span>
+                                <span class="dot" onclick="jumpToSlide('track2','dots2',1)"></span>
+                                <span class="dot" onclick="jumpToSlide('track2','dots2',2)"></span>
+                                <span class="dot" onclick="jumpToSlide('track2','dots2',3)"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--  SERVICIOS DESTACADOS  -->
+        <section class="servicios-home">
+            <div class="page-container">
+                <div class="section-title">
+                    <h2>¿Por qué elegirnos?</h2>
+                    <p>Combinamos lo mejor de dos mundos</p>
+                    <div class="linea-deco"></div>
+                </div>
+                <div class="servicios-grid">
+                    <div class="servicio-card">
+                        <div class="servicio-icono">☕</div>
+                        <h3>Café de Especialidad</h3>
+                        <p>Granos de origen 100% mexicanos, tostados semanalmente. Baristas certificados que hacen de cada taza una obra de arte.</p>
+                    </div>
+                    <div class="servicio-card">
+                        <div class="servicio-icono">📖</div>
+                        <h3>Librería Curada</h3>
+                        <p>Más de 500 títulos seleccionados con criterio literario. Nuevos ingresos cada semana, con recomendaciones personalizadas.</p>
+                    </div>
+                    <div class="servicio-card">
+                        <div class="servicio-icono">🎉</div>
+                        <h3>Eventos Culturales</h3>
+                        <p>Clubes de lectura, presentaciones de autores, talleres de escritura y noches de poesía todos los meses.</p>
+                    </div>
+                    <div class="servicio-card">
+                        <div class="servicio-icono">🥐</div>
+                        <h3>Repostería Artesanal</h3>
+                        <p>Panes, croissants y pasteles horneados diariamente. El acompañamiento perfecto para tu libro favorito.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- FOOTER -->
