@@ -1,4 +1,4 @@
-/* --- CATALOGO.CSS --- */
+/* ── CATALOGO.CSS ── */
 
 .cat-hero {
   background: linear-gradient(135deg, var(--cafe-oscuro), var(--cafe-medio));
@@ -228,4 +228,308 @@
   font-size: 1rem;
   padding: 3rem 0;
   grid-column: span 3;
+}
+
+/* IMÁGENES REALES EN TARJETAS DE PRODUCTO
+   Agregar al final de catalogo.css  */
+
+/* --- Contenedor de imagen: cambia de flex-centrado a bloque --- */
+.producto-imagen {
+  position: relative;      /* contexto para .producto-img y el fallback */
+  overflow: hidden;         /* recorta la imagen al aspect-ratio 4:3    */
+  background: var(--crema); /* color base mientras la imagen carga       */
+}
+
+/* --- La imagen real --- */
+.producto-img {
+  display: block;           /* quita el espacio fantasma de inline       */
+  width: 100%;              /* ocupa todo el ancho del contenedor        */
+  height: 100%;             /* ocupa toda la altura definida por aspect-ratio */
+  object-fit: cover;        /* recorta la imagen sin deformarla          */
+  object-position: center;  /* centra el punto focal del recorte        */
+  transition: transform 0.4s ease; /* para el zoom suave en hover       */
+}
+
+/* --- Zoom suave al hacer hover sobre la tarjeta --- */
+.producto-card:hover .producto-img {
+  transform: scale(1.06);   /* zoom del 6% al hacer hover               */
+}
+
+/* ── Skeleton loader: efecto de carga mientras llega la imagen ──── */
+.producto-imagen::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    var(--crema-oscura) 25%,
+    var(--crema)        50%,
+    var(--crema-oscura) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.4s ease infinite;
+  z-index: 1;               /* encima del fondo, debajo de la imagen    */
+  pointer-events: none;
+}
+
+/* Cuando la imagen ya cargó, ocultamos el skeleton */
+.producto-imagen:has(.producto-img[src]:not([src=""])) ::before,
+.producto-img.loaded ~ .producto-imagen::before {
+  display: none;
+}
+
+@keyframes skeleton-loading {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ---  La imagen se pone encima del skeleton al cargar --- */
+.producto-img {
+  position: relative;
+  z-index: 2;               /* encima del ::before del skeleton         */
+}
+
+/* --- Fallback: emoji que se muestra solo si la imagen falla --- */
+.producto-emoji-fallback {
+  display: none;            /* oculto por defecto                       */
+  position: absolute;
+  inset: 0;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.5rem;
+  z-index: 3;               /* encima del skeleton y de la imagen rota  */
+  /* el background y el display:flex los activa el onerror del JS      */
+}
+
+/* Estado cuando la imagen falló (clase añadida por onerror en JS) */
+.producto-imagen.img-fallback {
+  display: flex;            /* para que el emoji se centre              */
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ocultamos el skeleton si hubo fallback */
+.producto-imagen.img-fallback::before {
+  display: none;
+}
+
+/* --- Badge de categoría encima de la imagen (overlay) --- */
+.producto-cat-overlay {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 4;               /* encima de todo, incluyendo la imagen     */
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--crema);
+  background: rgba(44, 26, 14, 0.72); /* café oscuro semitransparente  */
+  padding: 3px 8px;
+  border-radius: 4px;
+  backdrop-filter: blur(4px); /* desenfoca lo que hay detrás del badge */
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.producto-imagen {
+  font-size: 0; /* evita que el contenedor tenga tamaño de texto residual */
+}
+
+/* MODAL DE DETALLE DE PRODUCTO  */
+
+/* --- Overlay oscuro de fondo --- */
+.modal-overlay {
+  position: fixed;          /* cubre toda la pantalla independiente del scroll */
+  inset: 0;                 /* top/right/bottom/left: 0                        */
+  background: rgba(30, 17, 10, 0.75); /* café oscuro semitransparente         */
+  backdrop-filter: blur(4px);         /* desenfoca el contenido de atrás      */
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 500;             /* por encima de header (z:100) y todo lo demás   */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+
+  /* Estado OCULTO por defecto */
+  opacity: 0;
+  pointer-events: none;     /* no captura clics cuando está oculto            */
+  transition: opacity 0.3s ease;
+}
+
+/* Estado VISIBLE — añadido por JS con overlay.classList.add('activo') */
+.modal-overlay.activo {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* --- Caja del modal --- */
+.modal-box {
+  background: var(--blanco);
+  border-radius: 12px;
+  box-shadow: 0 24px 64px rgba(30, 17, 10, 0.45);
+  max-width: 820px;
+  width: 100%;
+  max-height: 90vh;         /* nunca más alto que el 90% de la pantalla       */
+  overflow-y: auto;         /* scroll interno si el contenido es muy largo    */
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* imagen izquierda, texto derecha         */
+  position: relative;
+
+  /* Animación de entrada */
+  transform: translateY(24px) scale(0.97);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+                            /* cubic-bezier con rebote leve                   */
+}
+
+.modal-overlay.activo .modal-box {
+  transform: translateY(0) scale(1);
+}
+
+/* --- Botón cerrar ✕ --- */
+.modal-cerrar {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 10;
+  background: rgba(44, 26, 14, 0.08);
+  border: none;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  color: var(--cafe-suave);
+  cursor: pointer;
+  transition: background var(--transicion), color var(--transicion);
+}
+
+.modal-cerrar:hover {
+  background: var(--terracota);
+  color: white;
+}
+
+/* --- Imagen del modal --- */
+.modal-imagen-wrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px 0 0 12px; /* solo redondea el lado izquierdo          */
+  background: var(--crema);
+  min-height: 320px;
+}
+
+.modal-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.5s ease;
+}
+
+.modal-imagen-wrap:hover .modal-img {
+  transform: scale(1.04);
+}
+
+/* Fallback emoji cuando la imagen falla */
+.modal-emoji-fallback {
+  display: none;            /* JS lo activa con display:flex */
+  position: absolute;
+  inset: 0;
+  align-items: center;
+  justify-content: center;
+  font-size: 6rem;
+  background: var(--modal-fallback-bg, var(--crema)); /* variable CSS del JS */
+}
+
+/* Badge de categoría encima de la imagen del modal */
+.modal-cat-badge {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  background: rgba(44, 26, 14, 0.75);
+  color: var(--crema);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 4px 10px;
+  border-radius: 4px;
+  backdrop-filter: blur(4px);
+}
+
+/* --- Cuerpo de texto del modal ---  */
+.modal-body {
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.modal-desc {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--terracota);
+}
+
+.modal-nombre {
+  font-family: var(--font-titulo);
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: var(--cafe-oscuro);
+  line-height: 1.2;
+}
+
+.modal-detalle {
+  font-size: 0.9rem;
+  color: var(--cafe-suave);
+  line-height: 1.8;
+  flex: 1;                  /* crece para empujar el footer hacia abajo       */
+}
+
+.modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--crema-oscura);
+  margin-top: auto;
+}
+
+.modal-precio {
+  font-family: var(--font-titulo);
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--terracota);
+}
+
+/* --- Responsive del modal --- */
+@media (max-width: 640px) {
+  .modal-box {
+    grid-template-columns: 1fr;  /* imagen arriba, texto abajo en móvil    */
+    max-height: 95vh;
+  }
+
+  .modal-imagen-wrap {
+    border-radius: 12px 12px 0 0; /* redondea solo la parte de arriba      */
+    min-height: 220px;
+    max-height: 260px;
+  }
+
+  .modal-body {
+    padding: 1.5rem;
+  }
+
+  .modal-nombre {
+    font-size: 1.3rem;
+  }
+
+  .modal-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }

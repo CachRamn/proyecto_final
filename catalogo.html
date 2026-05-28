@@ -28,7 +28,68 @@
         </div>
     </header>
     <main>
-        
+        <section class="cat-hero">
+            <div class="page-container">
+                <h1>Nuestro Catálogo</h1>
+                <p>Explora y filtra todos nuestros productos — libros, bebidas y repostería en un solo lugar.</p>
+            </div>
+        </section>
+
+        <section class="catalogo-section">
+            <div class="page-container catalogo-layout">
+
+                <!-- FILTROS -->
+                <aside class="filtros-panel">
+                <h2 class="filtros-titulo">Filtros</h2>
+
+                <div class="filtro-grupo">
+                    <h3>Buscar</h3>
+                    <input type="search" id="filtro-busqueda" placeholder="Nombre del producto..." class="filtro-input">
+                </div>
+
+                <div class="filtro-grupo">
+                    <h3>Categoría</h3>
+                    <label class="filtro-label"><input type="checkbox" class="filtro-cat" value="libro" checked> 📚 Libros</label>
+                    <label class="filtro-label"><input type="checkbox" class="filtro-cat" value="bebida" checked> ☕ Bebidas</label>
+                    <label class="filtro-label"><input type="checkbox" class="filtro-cat" value="reposteria" checked> 🥐 Repostería</label>
+                </div>
+
+                <div class="filtro-grupo">
+                    <h3>Precio máximo</h3>
+                    <input type="range" id="filtro-precio" min="0" max="400" value="400" class="filtro-range">
+                    <p class="precio-display">Hasta: $<span id="precio-val">400</span></p>
+                </div>
+
+                <div class="filtro-grupo">
+                    <h3>Ordenar por</h3>
+                    <select id="filtro-orden" class="filtro-select">
+                        <option value="default">Predeterminado</option>
+                        <option value="precio-asc">Precio: menor a mayor</option>
+                        <option value="precio-desc">Precio: mayor a menor</option>
+                        <option value="nombre">Nombre A-Z</option>
+                    </select>
+                </div>
+
+                <button class="cta-button" onclick="limpiarFiltros()" style="width:100%; margin-top:1rem; text-align:center;">
+                    Limpiar filtros
+                </button>
+                </aside>
+
+                <!-- PRODUCTOS -->
+                <div class="productos-area">
+                    <div class="productos-header">
+                        <p id="contador-productos">Mostrando <strong>24</strong> productos</p>
+                    </div>
+                <div class="productos-grid" id="productos-grid">
+                    <!-- Generado por JS -->
+                </div>
+                <p class="no-resultados" id="no-resultados" style="display:none">
+                    😕 No se encontraron productos con esos filtros.
+                </p>
+                </div>
+
+            </div>
+        </section>
     </main>
 
     <!-- FOOTER -->
@@ -84,5 +145,6 @@
             </p>
         </div>
     </footer>
+    <script src="js/catalogo.js"></script>
 </body>
 </html>
