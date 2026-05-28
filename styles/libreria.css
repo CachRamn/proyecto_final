@@ -1,4 +1,4 @@
-/* CAFETERÍA */
+/*--- LIBRERÍA ---*/
 
 /* PAGE HERO */
 .page-hero {
@@ -82,117 +82,132 @@
   gap: 0.75rem;
 }
 
-/* MENÚ */
-.menu-section {
+/* GÉNEROS */
+.generos-section {
   padding: 5rem 0;
   background: var(--crema);
 }
 
-.menu-categorias {
+.generos-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2.5rem;
+  gap: 1.75rem;
 }
 
-@media (max-width: 860px) { .menu-categorias { grid-template-columns: 1fr; } }
+@media (max-width: 860px) { .generos-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 540px) { .generos-grid { grid-template-columns: 1fr; } }
 
-.menu-cat {
+.genero-card {
   background: var(--blanco);
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: var(--sombra-suave);
-}
-
-.menu-cat-titulo {
-  font-family: var(--font-titulo);
-  font-size: 1.05rem;
-  color: var(--crema);
-  background: var(--cafe-oscuro);
-  padding: 1rem 1.4rem;
-}
-
-.menu-items { padding: 0.5rem 0; }
-
-.menu-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.7rem 1.4rem;
-  border-bottom: 1px solid var(--crema-oscura);
-  transition: background var(--transicion);
-}
-
-.menu-item:last-child { border-bottom: none; }
-.menu-item:hover { background: var(--crema); }
-
-.menu-nombre {
-  font-size: 0.9rem;
-  color: var(--cafe-oscuro);
-}
-
-.menu-precio {
-  font-family: var(--font-titulo);
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--terracota);
-}
-
-/* PROCESO */
-.proceso-section {
-  padding: 5rem 0;
-  background: var(--blanco);
-}
-
-.proceso-steps {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.step {
-  background: var(--crema);
   border: 1px solid var(--crema-oscura);
   border-radius: 8px;
   padding: 2rem 1.5rem;
-  text-align: center;
-  flex: 1;
-  min-width: 180px;
-  max-width: 220px;
-  transition: transform var(--transicion), box-shadow var(--transicion);
+  transition: transform var(--transicion), box-shadow var(--transicion), border-color var(--transicion);
 }
 
-.step:hover {
-  transform: translateY(-4px);
+.genero-card:hover {
+  transform: translateY(-5px);
   box-shadow: var(--sombra-hover);
+  border-color: var(--terracota);
 }
 
-.step-num {
-  font-family: var(--font-titulo);
-  font-size: 2.5rem;
-  font-weight: 900;
-  color: var(--terracota);
-  opacity: 0.3;
-  line-height: 1;
-  margin-bottom: 0.5rem;
+.genero-icono {
+  font-size: 2.2rem;
+  margin-bottom: 0.9rem;
+  display: block;
 }
 
-.step h3 {
+.genero-card h3 {
   font-family: var(--font-titulo);
   font-size: 1rem;
   color: var(--cafe-oscuro);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
 }
 
-.step p { font-size: 0.83rem; color: var(--cafe-suave); line-height: 1.6; }
+.genero-card p {
+  font-size: 0.86rem;
+  color: var(--cafe-suave);
+  line-height: 1.65;
+  margin-bottom: 1rem;
+}
 
-.step-flecha {
-  font-size: 1.5rem;
+.genero-cant {
+  font-size: 0.78rem;
+  font-weight: 600;
   color: var(--terracota);
-  opacity: 0.4;
+  background: rgba(196,98,45,0.1);
+  padding: 0.25rem 0.75rem;
+  border-radius: 40px;
+  letter-spacing: 0.04em;
+}
+
+/* EVENTOS */
+.eventos-section {
+  padding: 5rem 0;
+  background: var(--blanco);
+}
+
+.eventos-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.evento-card {
+  background: var(--crema);
+  border-left: 4px solid var(--terracota);
+  border-radius: 0 8px 8px 0;
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  box-shadow: var(--sombra-suave);
+  transition: transform var(--transicion);
+}
+
+.evento-card:hover { transform: translateX(6px); }
+
+.evento-fecha {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-width: 50px;
   flex-shrink: 0;
 }
 
-@media (max-width: 700px) { .step-flecha { display: none; } }
+.evento-dia {
+  font-family: var(--font-titulo);
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--terracota);
+  line-height: 1;
+}
+
+.evento-mes {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--cafe-suave);
+}
+
+.evento-info h3 {
+  font-family: var(--font-titulo);
+  font-size: 1rem;
+  color: var(--cafe-oscuro);
+  margin-bottom: 0.35rem;
+}
+
+.evento-info p {
+  font-size: 0.86rem;
+  color: var(--cafe-suave);
+  margin-bottom: 0.4rem;
+}
+
+.evento-hora {
+  font-size: 0.8rem;
+  color: var(--terracota);
+  font-weight: 600;
+}
