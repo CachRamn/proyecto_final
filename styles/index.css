@@ -225,16 +225,55 @@
   font-weight: 700;
 }
 
-.carousel-placeholder {
+/* --- IMAGEN dentro del slide --- */
+.carousel-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;        /* Cubre el slide sin deformar la imagen */
+  object-position: center;  /* Centra el foco de la imagen */
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+/* Zoom suave al hacer hover sobre el slide */
+.carousel-slide:hover .carousel-img {
+  transform: scale(1.04);
+}
+
+/* Capa oscura degradada sobre la imagen para que el texto sea legible */
+.carousel-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2.5rem 1.2rem 1.2rem;
+  background: linear-gradient(to top, rgba(20, 10, 0, 0.75) 0%, transparent 100%);
+  z-index: 2;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-end;
+}
+
+.carousel-caption span {
   color: var(--crema);
   font-family: var(--font-titulo);
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   font-style: italic;
-  text-align: center;
-  padding: 1rem;
+  font-weight: 600;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+  line-height: 1.3;
+}
+
+/* El slide debe ser position:relative para que la imagen absoluta funcione */
+.carousel-slide {
+  position: relative;
+  overflow: hidden;  /* Contiene el zoom del hover */
+}
+
+/* Fallback: si la imagen no carga, muestra un fondo café */
+.carousel-slide:not(:has(.carousel-img[src])) {
+  background: var(--cafe-medio);
 }
 
 /* SERVICIOS */
