@@ -10,7 +10,7 @@
             Ej: "Cien Años de Soledad" → cien-anos-soledad.webp
 */
 
-const IMG_BASE = 'img/catalogo/';   // ← Cambia esta ruta si mueves la carpeta
+const IMG_BASE = 'img/catalogo/'; 
 
 const productos = [
   //  LIBROS  
@@ -290,9 +290,10 @@ function buildImagenHTML(p) {
 
 /* FUNCIÓN: renderizar la lista de productos en el grid */
 function renderProductos(lista) {
+
   const grid  = document.getElementById('productos-grid');
-  const noRes = document.getElementById('no-resultados');
   const cont  = document.getElementById('contador-productos');
+  const noRes = document.getElementById('no-resultados');
 
   grid.innerHTML = '';
 
@@ -306,24 +307,47 @@ function renderProductos(lista) {
   cont.innerHTML = `Mostrando <strong>${lista.length}</strong> productos`;
 
   lista.forEach((p, i) => {
+
     const card = document.createElement('div');
     card.className = 'producto-card';
     card.style.animationDelay = `${i * 0.04}s`;
 
     card.innerHTML = `
-      <div class="producto-imagen">
+      <div class="producto-imagen producto-open-modal">
         ${buildImagenHTML(p)}
       </div>
+
       <div class="producto-info">
+
         <span class="producto-cat">${catLabel(p.categoria)}</span>
-        <div class="producto-nombre">${p.nombre}</div>
-        <div class="producto-desc">${p.desc}</div>
+
+        <div class="producto-nombre">
+          ${p.nombre}
+        </div>
+
+        <div class="producto-desc">
+          ${p.desc}
+        </div>
+
         <div class="producto-footer">
-          <span class="producto-precio">$${p.precio}</span>
-          <button class="producto-btn">+ Info</button>
+          <span class="producto-precio">
+            $${p.precio}
+          </span>
+
+          <button class="producto-btn producto-open-modal">
+            + Info
+          </button>
         </div>
       </div>
     `;
+
+    const modalTriggers = card.querySelectorAll('.producto-open-modal');
+
+    modalTriggers.forEach(el => {
+      el.addEventListener('click', () => {
+        abrirModalProducto(p);
+      });
+    });
 
     grid.appendChild(card);
   });
@@ -382,3 +406,74 @@ document.getElementById('filtro-orden').addEventListener('change', aplicarFiltro
 
 // Render inicial
 renderProductos(productos);
+
+//Modal Producto
+
+const modalOverlay = document.querySelector('[data-modal-overlay]');
+const modalClose   = document.querySelector('[data-modal-close]');
+
+if (!modalOverlay || !modalClose) {
+  console.error('No se encontró el modal en el HTML');
+}
+
+function abrirModalProducto(producto) {
+
+  const modalImage       = document.querySelector('[data-modal-image]');
+  const modalCategory    = document.querySelector('[data-modal-category]');
+  const modalTitle       = document.querySelector('[data-modal-title]');
+  const modalDescription = document.querySelector('[data-modal-description]');
+  const modalDetails     = document.querySelector('[data-modal-details]');
+  const modalPrice       = document.querySelector('[data-modal-price]');
+
+  modalCategory.textContent = catLabel(producto.categoria);
+  modalTitle.textContent = producto.nombre;
+  modalDescription.textContent = producto.desc;
+  modalPrice.textContent = `$${producto.precio}`;
+
+  modalDetails.innerHTML = '';
+
+  const detalles = producto.extras || [
+    'Producto disponible en sucursal',
+    'Calidad premium',
+    'Consulta disponibilidad'
+  ];
+
+  detalles.forEach(detalle => {
+
+    const li = document.createElement('li');
+    li.textContent = detalle;
+    modalDetails.appendChild(li);
+  });
+
+  modalImage.innerHTML = `
+    <img
+      src="img/catalogo/${producto.imagen}"
+      alt="${producto.nombre}"
+      onerror="this.parentElement.innerHTML='<div class=&quot;catalogo-modal-fallback&quot; style=&quot;background:${producto.color}&quot;>${producto.emoji}</div>'"
+    >
+  `;
+
+  document.body.style.overflow = 'hidden';
+  modalOverlay.classList.add('active');
+}
+
+function cerrarModalProducto() {
+  modalOverlay.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+modalClose.addEventListener('click', cerrarModalProducto);
+
+modalOverlay.addEventListener('click', function(e) {
+
+  if (e.target === modalOverlay) {
+    cerrarModalProducto();
+  }
+});
+
+window.addEventListener('keydown', function(e) {
+
+  if (e.key === 'Escape') {
+    cerrarModalProducto();
+  }
+});

@@ -6,6 +6,7 @@
     <title>Catalogo | Página y Cáfe</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="styles/catalogo.css">
+    <link rel="stylesheet" href="styles/catalogo-modal.css">
 </head>
 <body>
     <header class="header">
@@ -147,5 +148,34 @@
     </footer>
     <script src="js/catalogo.js"></script>
     <script src="js/global.js"></script>
+    <!-- MODAL PRODUCTO -->
+    <div class="catalogo-modal-overlay" data-modal-overlay>
+        <div class="catalogo-modal-container">
+            <button class="catalogo-modal-close" data-modal-close>
+                ✕
+            </button>
+            <div class="catalogo-modal-grid">
+                <div class="catalogo-modal-image" data-modal-image>
+                    <!-- Imagen dinámica -->
+                </div>
+                <div class="catalogo-modal-content">
+                    <span class="catalogo-modal-category" data-modal-category></span>
+                    <h2 class="catalogo-modal-title" data-modal-title></h2>
+                    <p class="catalogo-modal-description" data-modal-description></p>
+                    <div class="catalogo-modal-extra">
+                        <h3>Detalles</h3>
+                        <ul data-modal-details>
+                        </ul>
+                    </div>
+                    <div class="catalogo-modal-footer">
+                        <span class="catalogo-modal-price" data-modal-price></span>
+                        <button class="catalogo-modal-buy">
+                            Agregar al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
